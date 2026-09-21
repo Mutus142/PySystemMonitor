@@ -1,3 +1,5 @@
+# PARTE DE DADOS DO PROCESSADOR
+
 import psutil
 import time
 
