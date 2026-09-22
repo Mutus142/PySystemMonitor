@@ -20,7 +20,11 @@ def menu_principal():
     
         ESCOLHA UMA OPÇÃO''')
 
-        escolha = int(input('Qual é sua escolha?: '))
+        try:
+            escolha = int(input('Escolha uma opção: '))
+        except ValueError:
+            print('\nDigite apenas números!\n')
+            continue
 
         if escolha == 1:
             analise()

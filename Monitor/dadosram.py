@@ -43,7 +43,13 @@ Uso da RAM:       {ram_percent}%
 ========================================
 ''')
 
-        escolha = int(input('Escolha uma opção: '))
+        try:
+            escolha = int(input('Escolha uma opção: '))
+
+        except ValueError:
+            print('Digite apenas números!')
+            continue
+
 
         if escolha == 1:
             return
@@ -54,7 +60,7 @@ Uso da RAM:       {ram_percent}%
 
         elif escolha == 3:
             print('\nSaindo do sistema...')
-            break
+            raise SystemExit(0)
 
         else:
             print('\nOpção inválida...\n')

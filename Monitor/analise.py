@@ -89,7 +89,13 @@ Pacotes enviados:      {rede_pacotesenviados}
 ==================================================
 ''')
 
-        escolha = int(input('Escolha uma opção: '))
+        try:
+            escolha = int(input('Escolha uma opção: '))
+
+        except ValueError:
+            print('Digite apenas números!')
+            continue
+
 
         if escolha == 1:
             return
@@ -100,7 +106,7 @@ Pacotes enviados:      {rede_pacotesenviados}
 
         elif escolha == 3:
             print('\nSaindo...')
-            break
+            raise SystemExit(0)
 
         else:
             print('\nOperação inválida!\n')

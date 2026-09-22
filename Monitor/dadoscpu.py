@@ -22,8 +22,10 @@ def dados_cpu():
 Uso da CPU:          {cpu_porcent}%
 Núcleos físicos:     {cpu_nucleos}
 Threads:             {cpu_threads}
-Frequência:          {cpu_freq}
-Tempos da CPU:       {cpu_times}
+Frequência: {cpu_freq.current / 1000:.2f} GHz
+Tempo de usuário: {cpu_times.user:.2f} s
+Tempo do sistema: {cpu_times.system:.2f} s
+Tempo ocioso: {cpu_times.idle:.2f} s
 
 ========================================
 ''')
@@ -42,7 +44,13 @@ Tempos da CPU:       {cpu_times}
 ========================================
 ''')
 
-        escolha = int(input('Escolha uma opção: '))
+        try:
+            escolha = int(input('Escolha uma opção: '))
+
+        except ValueError:
+            print('Digite apenas números!')
+            continue
+
 
         if escolha == 1:
             return
@@ -53,7 +61,7 @@ Tempos da CPU:       {cpu_times}
 
         elif escolha == 3:
             print('\nEncerrando PySystemMonitor...')
-            break
+            raise SystemExit(0)
 
         else:
             print('\n[!] Opção inválida. Tente novamente.\n')

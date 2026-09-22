@@ -55,7 +55,13 @@ Pacotes enviados descartados:   {rede_pacotenvdescart}
 ========================================
 ''')
 
-        escolha = int(input('Escolha uma opção: '))
+        try:
+            escolha = int(input('Escolha uma opção: '))
+
+        except ValueError:
+            print('Digite apenas números!')
+            continue
+
 
         if escolha == 1:
             return
@@ -66,7 +72,7 @@ Pacotes enviados descartados:   {rede_pacotenvdescart}
 
         elif escolha == 3:
             print('\nSaindo...')
-            break
+            raise SystemExit(0)
 
         else:
             print('\nOpção inválida!\n')

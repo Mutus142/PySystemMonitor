@@ -52,7 +52,7 @@ Percentual usado:   {disco_percent}%
 
         elif escolha == 3:
             print('\nSaindo...')
-            break
+            raise SystemExit(0)
 
         else:
             print('\nOpção inválida...\n')
