@@ -16,51 +16,55 @@ def dados_ram():
         ram_percent = ram.percent
 
         print(f'''
-========================================
-             MEMÓRIA RAM
-========================================
+==================================================
+                 PY SYSTEM MONITOR
+                   ANÁLISE RAM
+==================================================
 
-RAM total:        {ram_total:.2f} GB
-RAM usada:        {ram_usada:.2f} GB
-RAM disponível:   {ram_disponivel:.2f} GB
-Uso da RAM:       {ram_percent}%
+[ MEMÓRIA RAM ]
 
-========================================
+RAM total:              {ram_total:.2f} GiB
+RAM utilizada:          {ram_usada:.2f} GiB
+RAM disponível:         {ram_disponivel:.2f} GiB
+Uso da RAM:             {ram_percent}%
+
+==================================================
 ''')
 
         time.sleep(7)
-        print('Carregando mais opções...')
+        print('\nCarregando mais opções...\n')
 
-        print('''
-========================================
-           O QUE DESEJA FAZER?
-========================================
+        while True:
+
+            print('''
+==================================================
+                O QUE DESEJA FAZER?
+==================================================
 
 [1] Voltar ao menu principal
 [2] Fazer nova análise da RAM
-[3] Sair
+[3] Sair do programa
 
-========================================
+==================================================
 ''')
 
-        try:
-            escolha = int(input('Escolha uma opção: '))
+            try:
+                escolha = int(input('Escolha uma opção: '))
 
-        except ValueError:
-            print('Digite apenas números!')
-            continue
+            except ValueError:
+                print('\n[!] Digite apenas números!\n')
+                continue
 
+            if escolha == 1:
+                return
 
-        if escolha == 1:
-            return
+            elif escolha == 2:
+                print('\nRealizando nova análise da RAM...\n')
+                break
 
-        elif escolha == 2:
-            print('\nRealizando nova análise da RAM...\n')
-            continue
+            elif escolha == 3:
+                print('\nEncerrando PySystemMonitor. Até logo!\n')
+                raise SystemExit(0)
 
-        elif escolha == 3:
-            print('\nSaindo do sistema...')
-            raise SystemExit(0)
-
-        else:
-            print('\nOpção inválida...\n')
+            else:
+                print('\n[!] Opção inválida! Tente novamente.\n')

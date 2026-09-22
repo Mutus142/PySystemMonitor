@@ -1,4 +1,3 @@
-# PARTE DE DADOS DO PROCESSADOR
 
 import psutil
 import time
@@ -15,53 +14,61 @@ def dados_cpu():
         cpu_times = psutil.cpu_times()
 
         print(f'''
-========================================
-              DADOS DA CPU
-========================================
+==================================================
+                 PY SYSTEM MONITOR
+                   ANÁLISE CPU
+==================================================
 
-Uso da CPU:          {cpu_porcent}%
-Núcleos físicos:     {cpu_nucleos}
-Threads:             {cpu_threads}
-Frequência: {cpu_freq.current / 1000:.2f} GHz
-Tempo de usuário: {cpu_times.user:.2f} s
-Tempo do sistema: {cpu_times.system:.2f} s
-Tempo ocioso: {cpu_times.idle:.2f} s
+[ PROCESSADOR ]
 
-========================================
+Uso da CPU:             {cpu_porcent}%
+Núcleos físicos:        {cpu_nucleos}
+Threads:                {cpu_threads}
+Frequência atual:       {cpu_freq.current / 1000:.2f} GHz
+
+--------------------------------------------------
+
+[ TEMPOS DA CPU ]
+
+Tempo de usuário:       {cpu_times.user:.2f} s
+Tempo do sistema:       {cpu_times.system:.2f} s
+Tempo ocioso:           {cpu_times.idle:.2f} s
+
+==================================================
 ''')
 
         time.sleep(7)
+        while True:
 
-        print('''
-========================================
-           O QUE DESEJA FAZER?
-========================================
+            print('''
+==================================================
+                O QUE DESEJA FAZER?
+==================================================
 
 [1] Voltar ao menu principal
-[2] Fazer uma nova análise da CPU
-[3] Sair
+[2] Fazer nova análise da CPU
+[3] Sair do programa
 
-========================================
+==================================================
 ''')
 
-        try:
-            escolha = int(input('Escolha uma opção: '))
+            try:
+                escolha = int(input('Escolha uma opção: '))
 
-        except ValueError:
-            print('Digite apenas números!')
-            continue
+            except ValueError:
+                print('\n[!] Digite apenas números!\n')
+                continue
 
+            if escolha == 1:
+                return
 
-        if escolha == 1:
-            return
+            elif escolha == 2:
+                print('\nRealizando nova análise da CPU...\n')
+                break
 
-        elif escolha == 2:
-            print('\nRealizando uma nova análise...\n')
-            continue
+            elif escolha == 3:
+                print('\nEncerrando PySystemMonitor. Até logo!\n')
+                raise SystemExit(0)
 
-        elif escolha == 3:
-            print('\nEncerrando PySystemMonitor...')
-            raise SystemExit(0)
-
-        else:
-            print('\n[!] Opção inválida. Tente novamente.\n')
+            else:
+                print('\n[!] Opção inválida! Tente novamente.\n')

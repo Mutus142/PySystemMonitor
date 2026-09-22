@@ -1,4 +1,6 @@
-# MENU INICIAL DE ESCOLHA DE CADA PEÇA/VER MONITOR GERAL 
+# PY SYSTEM MONITOR V1.1
+# MENU PRINCIPAL
+
 from Monitor.dadoscpu import dados_cpu
 from Monitor.dadosram import dados_ram
 from Monitor.dadosdisco import dados_disco
@@ -7,23 +9,32 @@ from Monitor.analise import analise
 
 
 def menu_principal():
-    
+
     while True:
 
         print('''
-        BEM VINDO AO PY SYSTEM MONITOR v1.0 -- 21/09/2026 
-        1 - VER ANALISE COMPLETA
-        2 - CPU
-        3 - RAM
-        4 - DISCO
-        5 - REDE
-    
-        ESCOLHA UMA OPÇÃO''')
+==================================================
+                 PY SYSTEM MONITOR
+                     V1.1
+==================================================
+
+                  MENU PRINCIPAL
+
+[1] Análise completa do sistema
+[2] Monitoramento da CPU
+[3] Monitoramento da RAM
+[4] Monitoramento do disco
+[5] Monitoramento da rede
+[0] Sair do programa
+
+==================================================
+''')
 
         try:
             escolha = int(input('Escolha uma opção: '))
+
         except ValueError:
-            print('\nDigite apenas números!\n')
+            print('\n[!] Digite apenas números!\n')
             continue
 
         if escolha == 1:
@@ -41,9 +52,13 @@ def menu_principal():
         elif escolha == 5:
             dados_rede()
 
+        elif escolha == 0:
+            print('\nEncerrando PySystemMonitor. Até logo!\n')
+            break
+
         else:
-            print('Operação invalida!')
-            continue
+            print('\n[!] Opção inválida! Tente novamente.\n')
+
 
 if __name__ == "__main__":
     menu_principal()

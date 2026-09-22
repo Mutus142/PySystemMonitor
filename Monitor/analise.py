@@ -1,3 +1,4 @@
+
 import psutil
 import time
 
@@ -35,78 +36,80 @@ def analise():
 
         print(f'''
 ==================================================
-          ANÁLISE COMPLETA DA SUA MÁQUINA
+                 PY SYSTEM MONITOR
+                   ANÁLISE GERAL
 ==================================================
 
 [ CPU ]
 
-Uso da CPU:            {cpu_percent}%
-Núcleos físicos:       {cpu_nucleos}
-Threads:               {cpu_threads}
-Frequência atual:      {cpu_freq.current / 1000:.2f} GHz
+Uso da CPU:             {cpu_percent}%
+Núcleos físicos:        {cpu_nucleos}
+Threads:                {cpu_threads}
+Frequência atual:       {cpu_freq.current / 1000:.2f} GHz
 
 --------------------------------------------------
 
 [ MEMÓRIA RAM ]
 
-Uso da RAM:            {ram_percent}%
-RAM utilizada:         {ram_usado:.2f} GB
-RAM disponível:        {ram_disponivel:.2f} GB
-RAM total:             {ram_total:.2f} GB
+Uso da RAM:             {ram_percent}%
+RAM utilizada:          {ram_usado:.2f} GiB
+RAM disponível:         {ram_disponivel:.2f} GiB
+RAM total:              {ram_total:.2f} GiB
 
 --------------------------------------------------
 
 [ DISCO C: ]
 
-Uso do disco:          {disco_percent}%
-Espaço utilizado:      {disco_usado:.2f} GB
-Espaço livre:          {disco_livre:.2f} GB
-Espaço total:          {disco_total:.2f} GB
+Uso do disco:           {disco_percent}%
+Espaço utilizado:       {disco_usado:.2f} GiB
+Espaço livre:           {disco_livre:.2f} GiB
+Espaço total:           {disco_total:.2f} GiB
 
 --------------------------------------------------
 
 [ REDE ]
 
-Dados recebidos:       {rede_bytesrecebidos:.2f} GB
-Dados enviados:        {rede_bytesenviados:.2f} GB
-Pacotes recebidos:     {rede_pacotesrecebidos}
-Pacotes enviados:      {rede_pacotesenviados}
+Dados recebidos:        {rede_bytesrecebidos:.2f} GiB
+Dados enviados:         {rede_bytesenviados:.2f} GiB
+Pacotes recebidos:      {rede_pacotesrecebidos}
+Pacotes enviados:       {rede_pacotesenviados}
 
 ==================================================
 ''')
 
         time.sleep(10)
 
-        print('''
+        while True:
+
+            print('''
 ==================================================
-              O QUE DESEJA FAZER?
+                O QUE DESEJA FAZER?
 ==================================================
 
-[1] Voltar para o menu principal
+[1] Voltar ao menu principal
 [2] Fazer nova análise geral
-[3] Sair
+[3] Sair do programa
 
 ==================================================
 ''')
 
-        try:
-            escolha = int(input('Escolha uma opção: '))
+            try:
+                escolha = int(input('Escolha uma opção: '))
 
-        except ValueError:
-            print('Digite apenas números!')
-            continue
+            except ValueError:
+                print('\n[!] Digite apenas números!\n')
+                continue
 
+            if escolha == 1:
+                return
 
-        if escolha == 1:
-            return
+            elif escolha == 2:
+                print('\nRealizando nova análise geral...\n')
+                break
 
-        elif escolha == 2:
-            print('\nRealizando nova análise geral...\n')
-            continue
+            elif escolha == 3:
+                print('\nEncerrando PySystemMonitor. Até logo!\n')
+                raise SystemExit(0)
 
-        elif escolha == 3:
-            print('\nSaindo...')
-            raise SystemExit(0)
-
-        else:
-            print('\nOperação inválida!\n')
+            else:
+                print('\n[!] Opção inválida! Tente novamente.\n')

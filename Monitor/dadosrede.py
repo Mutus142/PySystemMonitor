@@ -1,7 +1,6 @@
 import psutil
 import time
 
-
 def dados_rede():
 
     while True:
@@ -21,58 +20,67 @@ def dados_rede():
         rede_pacotenvdescart = rede.dropout
 
         print(f'''
-========================================
-              DADOS DA REDE
-========================================
+==================================================
+                 PY SYSTEM MONITOR
+                   ANÁLISE REDE
+==================================================
 
-Dados recebidos:                {rede_bytesrecebidos:.2f} GB
-Dados enviados:                 {rede_bytesenviados:.2f} GB
+[ TRÁFEGO ACUMULADO ]
 
-Pacotes recebidos:              {rede_pacotesrecebidos}
-Pacotes enviados:               {rede_pacotesenviados}
+Dados recebidos:                 {rede_bytesrecebidos:.2f} GiB
+Dados enviados:                  {rede_bytesenviados:.2f} GiB
 
-Erros de recebimento:           {rede_errosrecebidos}
-Erros de envio:                 {rede_errosenviados}
+--------------------------------------------------
 
-Pacotes recebidos descartados:  {rede_pacotdescart}
-Pacotes enviados descartados:   {rede_pacotenvdescart}
+[ PACOTES ]
 
-========================================
+Pacotes recebidos:               {rede_pacotesrecebidos}
+Pacotes enviados:                {rede_pacotesenviados}
+
+--------------------------------------------------
+
+[ ERROS E DESCARTES ]
+
+Erros de recebimento:            {rede_errosrecebidos}
+Erros de envio:                  {rede_errosenviados}
+Pacotes recebidos descartados:   {rede_pacotdescart}
+Pacotes enviados descartados:    {rede_pacotenvdescart}
+
+==================================================
 ''')
 
         time.sleep(7)
-        print('Carregando mais opções...')
+        while True:
 
-        print('''
-========================================
-           O QUE DESEJA FAZER?
-========================================
+            print('''
+==================================================
+                O QUE DESEJA FAZER?
+==================================================
 
 [1] Voltar ao menu principal
 [2] Fazer nova análise da rede
-[3] Sair
+[3] Sair do programa
 
-========================================
+==================================================
 ''')
 
-        try:
-            escolha = int(input('Escolha uma opção: '))
+            try:
+                escolha = int(input('Escolha uma opção: '))
 
-        except ValueError:
-            print('Digite apenas números!')
-            continue
+            except ValueError:
+                print('\n[!] Digite apenas números!\n')
+                continue
 
+            if escolha == 1:
+                return
 
-        if escolha == 1:
-            return
+            elif escolha == 2:
+                print('\nAtualizando dados da rede...\n')
+                break
 
-        elif escolha == 2:
-            print('\nRealizando nova análise da rede...\n')
-            continue
+            elif escolha == 3:
+                print('\nEncerrando PySystemMonitor. Até logo!\n')
+                raise SystemExit(0)
 
-        elif escolha == 3:
-            print('\nSaindo...')
-            raise SystemExit(0)
-
-        else:
-            print('\nOpção inválida!\n')
+            else:
+                print('\n[!] Opção inválida! Tente novamente.\n')

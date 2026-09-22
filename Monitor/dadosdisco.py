@@ -14,45 +14,56 @@ def dados_disco():
         disco_percent = disco.percent
 
         print(f'''
-========================================
-              DADOS DO DISCO
-========================================
+==================================================
+                 PY SYSTEM MONITOR
+                  ANÁLISE DISCO
+==================================================
 
-Espaço total:       {disco_total:.2f} GB
-Espaço usado:       {disco_usado:.2f} GB
-Espaço livre:       {disco_livre:.2f} GB
-Percentual usado:   {disco_percent}%
+[ DISCO C: ]
 
-========================================
+Espaço total:           {disco_total:.2f} GiB
+Espaço utilizado:       {disco_usado:.2f} GiB
+Espaço livre:           {disco_livre:.2f} GiB
+Uso do disco:           {disco_percent}%
+
+==================================================
 ''')
 
         time.sleep(7)
-        print('Carregando novas opções...')
+        print('\nCarregando novas opções...\n')
 
-        print('''
-========================================
-           O QUE DESEJA FAZER?
-========================================
+        # MENU DE OPÇÕES
+        while True:
+
+            print('''
+==================================================
+                O QUE DESEJA FAZER?
+==================================================
 
 [1] Voltar ao menu principal
 [2] Fazer nova análise do disco
-[3] Sair
+[3] Sair do programa
 
-========================================
+==================================================
 ''')
 
-        escolha = int(input('Escolha uma opção: '))
+            try:
+                escolha = int(input('Escolha uma opção: '))
 
-        if escolha == 1:
-            return
+            except ValueError:
+                print('\n[!] Digite apenas números!\n')
+                continue
 
-        elif escolha == 2:
-            print('\nRealizando nova análise do disco...\n')
-            continue
+            if escolha == 1:
+                return
 
-        elif escolha == 3:
-            print('\nSaindo...')
-            raise SystemExit(0)
+            elif escolha == 2:
+                print('\nRealizando nova análise do disco...\n')
+                break
 
-        else:
-            print('\nOpção inválida...\n')
+            elif escolha == 3:
+                print('\nEncerrando PySystemMonitor. Até logo!\n')
+                raise SystemExit(0)
+
+            else:
+                print('\n[!] Opção inválida! Tente novamente.\n')
