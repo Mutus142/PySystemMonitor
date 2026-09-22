@@ -11,7 +11,7 @@ def menu_principal():
     while True:
 
         print('''
-        BEM VINDO AO PY SYSTEM MONITOR
+        BEM VINDO AO PY SYSTEM MONITOR v1.0 -- 21/09/2026 
         1 - VER ANALISE COMPLETA
         2 - CPU
         3 - RAM
@@ -40,3 +40,6 @@ def menu_principal():
         else:
             print('Operação invalida!')
             continue
+
+if __name__ == "__main__":
+    menu_principal()
