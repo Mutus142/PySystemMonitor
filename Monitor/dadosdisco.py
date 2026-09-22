@@ -26,7 +26,7 @@ Percentual usado:   {disco_percent}%
 ========================================
 ''')
 
-        time.sleep(2)
+        time.sleep(7)
         print('Carregando novas opções...')
 
         print('''

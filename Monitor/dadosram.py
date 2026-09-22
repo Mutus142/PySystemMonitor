@@ -1,6 +1,8 @@
+# PARTE DE DADOS DA RAM
+
 import psutil
 import time
-from main import menu_principal
+
 
 def dados_ram():
 
@@ -8,43 +10,51 @@ def dados_ram():
 
         ram = psutil.virtual_memory()
 
-        ram_total = ram.total / ( 1024 ** 3 )
-        ram_usada = ram.used / ( 1024 ** 3 )
-        ram_livre = ram.free / ( 1024 ** 3 )
-        ram_percent = ram.percent()
+        ram_total = ram.total / (1024 ** 3)
+        ram_usada = ram.used / (1024 ** 3)
+        ram_disponivel = ram.available / (1024 ** 3)
+        ram_percent = ram.percent
 
         print(f'''
-        OS DADOS DA SUA MEMORIA RAM:
-        
-        Ram total: {ram_total}GB 
-        Ram usada: {ram_usada}GB
-        Ram livre: {ram_livre}GB
-        Percentual da ram usada: {ram_percent}%
-        ''')
+========================================
+             MEMÓRIA RAM
+========================================
+
+RAM total:        {ram_total:.2f} GB
+RAM usada:        {ram_usada:.2f} GB
+RAM disponível:   {ram_disponivel:.2f} GB
+Uso da RAM:       {ram_percent}%
+
+========================================
+''')
 
         time.sleep(7)
         print('Carregando mais opções...')
 
         print('''
-        O QUE DESEJA FAZER AGORA? 
-        
-        1 - VOLTAR AO MENU PRINCIPAL
-        2 - FAZER NOVA ANALISE NA RAM
-        3 - SAIR
-        ''')
+========================================
+           O QUE DESEJA FAZER?
+========================================
+
+[1] Voltar ao menu principal
+[2] Fazer nova análise da RAM
+[3] Sair
+
+========================================
+''')
 
         escolha = int(input('Escolha uma opção: '))
 
         if escolha == 1:
-            menu_principal()
+            return
 
         elif escolha == 2:
+            print('\nRealizando nova análise da RAM...\n')
             continue
 
         elif escolha == 3:
-            print('Saindo do sistema...')
+            print('\nSaindo do sistema...')
             break
 
         else:
-            print('Opção invalida...')
-            
+            print('\nOpção inválida...\n')
