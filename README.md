@@ -1,57 +1,91 @@
-🖥️ PySystemMonitor
 
-Monitoramento de hardware e recursos do sistema diretamente pelo terminal, desenvolvido em Python.
+<div align="center">
 
-📌 Sobre o projeto
+# 🖥️ PySystemMonitor
 
-O PySystemMonitor é uma aplicação de linha de comando (CLI) desenvolvida em Python para monitorar os principais recursos de um computador.
+### Monitoramento de hardware e recursos do sistema com Python
 
-O projeto permite consultar individualmente o desempenho da CPU, o consumo de memória RAM, a utilização do disco e as estatísticas da rede. Também oferece uma análise geral que reúne as principais informações do sistema em um único painel no terminal.
+![Python](https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)
+![Version](https://img.shields.io/badge/Version-1.1-8A2BE2?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-22C55E?style=for-the-badge)
 
-O objetivo é colocar em prática conceitos de programação Python, modularização, tratamento de erros e coleta de informações do sistema operacional.
+**Uma ferramenta CLI para acompanhar CPU, memória RAM, disco e rede diretamente pelo terminal.**
 
-🚀 Funcionalidades
-Módulo	Funcionalidades
-🧠 CPU	Percentual de utilização, núcleos físicos, threads, frequência e tempos de processamento
-💾 RAM	Memória total, utilizada, disponível e percentual de uso
-💿 Disco	Capacidade total, espaço utilizado, espaço livre e percentual de ocupação
-🌐 Rede	Dados recebidos e enviados, pacotes transmitidos, erros e descartes
-📊 Análise geral	Visão consolidada dos principais indicadores do computador
-⚙️ Recursos adicionais
-Menu interativo para navegar entre os módulos.
-Possibilidade de atualizar as análises.
-Tratamento de entradas inválidas com try/except.
-Exibição organizada dos resultados.
-Estrutura modular para facilitar a manutenção e a expansão do projeto.
-🛠️ Tecnologias utilizadas
+[Funcionalidades](#-funcionalidades) •
+[Tecnologias](#-tecnologias-utilizadas) •
+[Instalação](#-instalação) •
+[Próximas versões](#-próximas-funcionalidades)
 
-Python
+</div>
 
-Linguagem principal utilizada no desenvolvimento do sistema, responsável pela coleta, processamento e apresentação dos dados.
+---
 
-psutil
+## 📌 Sobre o projeto
 
-Biblioteca que permite acessar informações sobre CPU, memória RAM, disco, rede e outros recursos do sistema operacional.
+O **PySystemMonitor** é uma aplicação de linha de comando (CLI), desenvolvida em Python, que permite acompanhar os principais recursos de um computador.
 
-time
+O sistema oferece análises individuais da CPU, memória RAM, disco e rede, além de uma análise geral que reúne as informações mais importantes em um único painel.
 
-Módulo nativo do Python utilizado para controlar os intervalos entre as análises e a exibição dos menus.
+O projeto foi desenvolvido com o objetivo de aprimorar conhecimentos em **Python, modularização, tratamento de erros, bibliotecas externas e monitoramento de sistemas operacionais**.
 
-Git e GitHub
+---
 
-Utilizados para versionamento do código-fonte, organização das atualizações e publicação do projeto.
+## 🚀 Funcionalidades
 
-Visual Studio Code
+| Módulo | Funcionalidades |
+|:---|:---|
+| 🧠 **CPU** | Utilização, núcleos físicos, threads, frequência e tempos de processamento |
+| 💾 **RAM** | Memória total, utilizada, disponível e percentual de uso |
+| 💿 **Disco** | Capacidade total, espaço utilizado, espaço livre e percentual de ocupação |
+| 🌐 **Rede** | Dados enviados e recebidos, pacotes, erros e descartes |
+| 📊 **Análise geral** | Visão consolidada dos principais indicadores do computador |
 
-Ambiente de desenvolvimento utilizado para escrever, organizar e executar o código.
+### ⚙️ Recursos adicionais
 
-📂 Estrutura do projeto
+- Menu principal interativo.
+- Análises individuais e análise geral.
+- Possibilidade de atualizar os dados.
+- Tratamento de entradas inválidas com `try/except`.
+- Navegação independente em cada módulo.
+- Exibição organizada e padronizada no terminal.
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+<div align="center">
+
+| Tecnologia | Utilização |
+|:---:|:---|
+| **Python** | Linguagem principal do projeto |
+| **psutil** | Coleta de informações de hardware e do sistema |
+| **time** | Controle dos intervalos entre análises |
+| **Git** | Versionamento do código-fonte |
+| **GitHub** | Hospedagem e documentação do projeto |
+| **VS Code** | Ambiente de desenvolvimento |
+
+</div>
+
+### 🐍 Python e psutil
+
+O Python é responsável pela lógica da aplicação, pelos menus interativos e pela organização dos módulos.
+
+A biblioteca `psutil` permite acessar informações como utilização da CPU, consumo de memória, armazenamento e estatísticas de rede.
+
+O módulo nativo `time` controla os intervalos de espera definidos para cada análise.
+
+---
+
+## 📂 Estrutura do projeto
+
+```text
 PySystemMonitor/
 │
 ├── main.py
+├── README.md
 ├── requirements.txt
 ├── .gitignore
-├── README.md
 │
 └── Monitor/
     ├── analise.py
@@ -59,13 +93,19 @@ PySystemMonitor/
     ├── dadosram.py
     ├── dadosdisco.py
     └── dadosrede.py
+```
 
-Cada módulo é responsável por uma análise específica, enquanto main.py controla o menu principal e a navegação entre as funcionalidades.
+O arquivo `main.py` controla o menu principal e a navegação.
 
-🖥️ Prévia do sistema
+Os arquivos da pasta `Monitor/` são responsáveis pela coleta e exibição das informações de cada componente.
 
-Exemplo ilustrativo da análise geral apresentada no terminal:
+---
 
+## 🖥️ Prévia do sistema
+
+Exemplo ilustrativo da análise geral:
+
+```text
 ==================================================
                  PY SYSTEM MONITOR
                    ANÁLISE GERAL
@@ -106,56 +146,111 @@ Pacotes recebidos:      1225410
 Pacotes enviados:       449009
 
 ==================================================
-📥 Instalação
+```
 
-1. Clone o repositório
+### 📋 Menu principal
 
+```text
+==================================================
+                 PY SYSTEM MONITOR
+                     V1.1
+==================================================
+
+                  MENU PRINCIPAL
+
+[1] Análise completa do sistema
+[2] Monitoramento da CPU
+[3] Monitoramento da RAM
+[4] Monitoramento do disco
+[5] Monitoramento da rede
+[0] Sair do programa
+
+==================================================
+```
+
+---
+
+## 📥 Instalação
+
+### 1. Clone o repositório
+
+Abra o terminal e execute:
+
+```bash
 git clone https://github.com/Mutus142/PySystemMonitor.git
+```
 
-2. Acesse a pasta do projeto
+### 2. Acesse a pasta
 
+```bash
 cd PySystemMonitor
+```
 
-3. Instale as dependências
+### 3. Instale as dependências
 
-Certifique-se de ter o Python instalado.
+É necessário ter o Python instalado.
 
+```bash
 python -m pip install -r requirements.txt
+```
 
-4. Execute o programa
+### 4. Execute o programa
 
+```bash
 python main.py
+```
 
-O menu principal será exibido no terminal para que você escolha o tipo de análise desejado.
+O menu principal será exibido no terminal.
 
-Observação: a versão atual foi desenvolvida para Windows. O monitoramento do disco utiliza a unidade C:\, que pode precisar ser alterada em outros sistemas operacionais.
+> [!NOTE]
+> A versão atual foi desenvolvida para Windows. O módulo de disco utiliza a unidade `C:\`, que pode precisar ser alterada em outros sistemas operacionais.
 
-📝 Histórico de versões
-V1.0 — Versão inicial
-Implementação dos módulos de CPU, RAM, disco e rede.
-Criação da análise geral.
-Desenvolvimento do menu principal interativo.
-V1.1 — Correções e padronização
-Correção do encerramento do programa.
-Formatação da frequência e dos tempos da CPU.
-Tratamento de entradas inválidas.
-Separação entre os loops de análise e de navegação.
-Padronização visual dos módulos e menus.
-Organização dos arquivos do projeto.
-🔮 Próximas funcionalidades
+---
+
+## 📝 Histórico de versões
+
+### 🟢 V1.1 — Correções e padronização
+
+- Correção do encerramento do programa.
+- Formatação da frequência e dos tempos da CPU.
+- Tratamento de entradas inválidas.
+- Separação dos loops de análise e navegação.
+- Padronização visual de todos os módulos.
+- Organização dos arquivos e documentação.
+
+### 🔵 V1.0 — Versão inicial
+
+- Implementação dos módulos de CPU, RAM, disco e rede.
+- Criação da análise geral do sistema.
+- Desenvolvimento do menu principal interativo.
+- Integração entre os módulos.
+
+---
+
+## 🔮 Próximas funcionalidades
 
 Funcionalidades planejadas para futuras versões:
 
-Monitoramento contínuo em tempo real.
-Medição das velocidades de download e upload.
-Alertas para consumo elevado de CPU, RAM e disco.
-Interface aprimorada com a biblioteca Rich.
-Exportação de relatórios.
-Informações adicionais sobre processos e interfaces de rede.
-👨‍💻 Desenvolvedor
+- [ ] Monitoramento contínuo em tempo real.
+- [ ] Velocidades de download e upload.
+- [ ] Alertas de consumo elevado de CPU, RAM e disco.
+- [ ] Interface aprimorada com a biblioteca Rich.
+- [ ] Exportação de relatórios.
+- [ ] Monitoramento de processos.
+- [ ] Informações adicionais das interfaces de rede.
 
-Mateus — Mutus142
+---
+
+## 👨‍💻 Desenvolvedor
+
+<div align="center">
+
+### Mateus — Mutus142
 
 Projeto desenvolvido para aprimorar conhecimentos em Python, monitoramento de sistemas e desenvolvimento de aplicações modulares.
 
-⭐ Se você gostou do projeto, deixe uma estrela no repositório!
+[![GitHub](https://img.shields.io/badge/GitHub-Mutus142-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mutus142)
+
+**⭐ Se gostou do projeto, considere deixar uma estrela no repositório!**
+
+</div>
