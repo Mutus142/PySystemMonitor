@@ -1,5 +1,4 @@
 🖥️ PySystemMonitor
-🖥️ PySystemMonitor
 
 Monitoramento de hardware e recursos do sistema diretamente pelo terminal, desenvolvido em Python.
 
