@@ -1,3 +1,4 @@
+
 import psutil
 import time
 from winotify import Notification
@@ -8,66 +9,76 @@ alertas_enviados = {
     "DISCO": False
 }
 
+
+def enviar_notificacao(recurso, porcentagem):
+    try:
+        print(f"Tentando enviar notificação: {recurso}")
+
+        alerta = Notification(
+            app_id="PySystemMonitor",
+            title=f"Alerta de utilização: {recurso}",
+            msg=f"{recurso} atingiu {porcentagem:.1f}%.",
+            duration="short"
+        )
+
+        alerta.show()
+        print(f"Notificação solicitada ao Windows: {recurso}")
+
+        return True
+
+    except Exception as erro:
+        print(f"Erro ao enviar notificação: {erro}")
+        return False
+
+
 def verificacao_limite():
-
     cpu = psutil.cpu_percent(interval=1)
+    ram_percent = psutil.virtual_memory().percent
+    disco_percent = psutil.disk_usage("C:\\").percent
 
-    ram = psutil.virtual_memory()
-    ram_percent = ram.percent
+    print("\n========== MONITORAMENTO ==========")
+    print(f"CPU: {cpu}%")
+    print(f"RAM: {ram_percent}%")
+    print(f"DISCO: {disco_percent}%")
+    print("===================================")
 
-    disco = psutil.disk_usage("C:\\")
-
-    disco_percent = disco.percent
+    componentes = {
+        "CPU": (cpu, 95),
+        "RAM": (ram_percent, 90),
+        "DISCO": (disco_percent, 95)
+    }
 
     alerta_ativo = False
 
-    if cpu >= 95:
-        alerta_ativo = True 
+    for recurso, (uso, limite) in componentes.items():
 
-        if not alertas_enviados["CPU"]:
-            enviar_notificacao("CPU", cpu)
-            alertas_enviados["CPU"] = True
-            print("CPU em estado grave!")
+        if uso >= limite:
+            alerta_ativo = True
 
-    else:
-        alertas_enviados["CPU"] = False
+            if not alertas_enviados[recurso]:
+                if enviar_notificacao(recurso, uso):
+                    alertas_enviados[recurso] = True
 
-    if ram_percent >= 90:
-        alerta_ativo = True
+                print(f"{recurso} em estado grave!")
 
-        if not alertas_enviados["RAM"]:
-            enviar_notificacao("RAM", ram_percent)
-            alertas_enviados["RAM"] = True
-            print("RAM em estado grave!")
-
-    else:
-        alertas_enviados["RAM"] = False
-
-    if disco_percent >= 95:
-        alerta_ativo = True
-
-        if not alertas_enviados["DISCO"]:
-            enviar_notificacao("DISCO", disco_percent)
-            alertas_enviados["DISCO"] = True
-            print("Disco em estado grave!")
-
-    else:
-        alertas_enviados["DISCO"] = False
+        else:
+            alertas_enviados[recurso] = False
 
     if not alerta_ativo:
-        print('Componentes funcionando!')
+        print("Componentes dentro dos limites!")
 
 
-def enviar_notificacao(recurso, porcentagem):
-    
-    alerta = Notification(
-        app_id="PySystemMonitor",
-        title=f"Uso elevado da {recurso}!",
-        msg=f"{recurso} atingiu {porcentagem}%.",
-        duration="short"
-    )
+def monitorar_limite():
+    print("PySystemMonitor iniciado!")
 
-    alerta.show()
+    try:
+        while True:
+            verificacao_limite()
+            time.sleep(5)
 
-alertas_enviados["CPU"] = False
-print('Pode receber notificação nova')
+    except KeyboardInterrupt:
+        print("\nMonitoramento encerrado!")
+
+
+if __name__ == "__main__":
+    monitorar_limite()
