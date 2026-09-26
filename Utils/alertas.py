@@ -36,12 +36,6 @@ def verificacao_limite():
     ram_percent = psutil.virtual_memory().percent
     disco_percent = psutil.disk_usage("C:\\").percent
 
-    print("\n========== MONITORAMENTO ==========")
-    print(f"CPU: {cpu}%")
-    print(f"RAM: {ram_percent}%")
-    print(f"DISCO: {disco_percent}%")
-    print("===================================")
-
     componentes = {
         "CPU": (cpu, 95),
         "RAM": (ram_percent, 90),
