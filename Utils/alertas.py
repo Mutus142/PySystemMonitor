@@ -31,16 +31,16 @@ def enviar_notificacao(recurso, porcentagem):
         return False
 
 
-def verificacao_limite():
+def verificacao_limite(limites):
     cpu = psutil.cpu_percent(interval=1)
     ram_percent = psutil.virtual_memory().percent
     disco_percent = psutil.disk_usage("C:\\").percent
 
     componentes = {
-        "CPU": (cpu, 95),
-        "RAM": (ram_percent, 90),
-        "DISCO": (disco_percent, 95)
-    }
+    "CPU": (cpu, limites["CPU"]),
+    "RAM": (ram_percent, limites["RAM"]),
+    "DISCO": (disco_percent, limites["DISCO"])
+    }   
 
     alerta_ativo = False
 
@@ -62,12 +62,12 @@ def verificacao_limite():
         print("Componentes dentro dos limites!")
 
 
-def monitorar_limite():
+def monitorar_limite(limites):
     print("PySystemMonitor iniciado!")
 
     try:
         while True:
-            verificacao_limite()
+            verificacao_limite(limites)
             time.sleep(5)
 
     except KeyboardInterrupt:
@@ -75,4 +75,10 @@ def monitorar_limite():
 
 
 if __name__ == "__main__":
-    monitorar_limite()
+    limites = {
+        "CPU": 95,
+        "RAM": 90,
+        "DISCO": 95
+    }
+
+    monitorar_limite(limites)

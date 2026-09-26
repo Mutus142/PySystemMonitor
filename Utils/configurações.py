@@ -1,11 +1,5 @@
 
-def obter_limites():
-
-    limites = {
-        "CPU": 95,
-        "RAM": 90,
-        "DISCO": 95
-    }
+def obter_limites(limites):
 
     alterar = input('Você deseja alterar algum limite? S/N ').upper()
 
@@ -50,19 +44,25 @@ def obter_limites():
                 limites['DISCO'] = limite_novodisco
             else:
                 print('Limite inválido!')
-                
+
         else:
             print('Operação cancelada!')
 
     return limites
 
+if __name__ == "__main__":
+    limites = {
+        "CPU": 95,
+        "RAM": 90,
+        "DISCO": 95
+    }
 
-while True:
-    configuracoes = obter_limites()
-    print(configuracoes)
+    while True:
+        configuracoes = obter_limites(limites)
+        print(configuracoes)
 
-    continuar = input('Deseja continuar? S/N: ').upper()
+        continuar = input("Deseja continuar? S/N: ").upper()
 
-    if continuar == 'N':
-        print('Encerrando configurações...')
-        break
+        if continuar == "N":
+            print("Encerrando configurações...")
+            break
