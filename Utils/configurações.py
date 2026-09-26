@@ -15,17 +15,20 @@ def obter_limites():
         1 - CPU
         2 - RAM
         3 - DISCO
-        ''')  
+        ''')
 
-        escolha = int(input('Qual é sua escolha?'))
+        escolha = int(input('Qual é sua escolha? '))
 
         if escolha == 1:
             limite_antigo = limites['CPU']
             print('Limite atual da CPU: ', limite_antigo)
 
-            limite_novo = int(input('Qual é o limite novo da CPU?'))
+            limite_novo = int(input('Qual é o limite novo da CPU? '))
 
-            limites['CPU'] = limite_novo
+            if 1 <= limite_novo <= 100:
+                limites['CPU'] = limite_novo
+            else:
+                print('Limite inválido!')
 
         elif escolha == 2:
             limite_antigoram = limites['RAM']
@@ -33,20 +36,33 @@ def obter_limites():
 
             limite_novoram = int(input('Qual é o novo limite da RAM? '))
 
-            limites['RAM'] = limite_novoram
+            if 1 <= limite_novoram <= 100:
+                limites['RAM'] = limite_novoram
+            else:
+                print('Limite inválido!')
 
         elif escolha == 3:
             limite_antigodisco = limites['DISCO']
             print('Limite antigo do disco: ', limite_antigodisco)
 
             limite_novodisco = int(input('Qual é o limite novo do disco? '))
-
-            limites['DISCO'] = limite_novodisco
-
+            if 1 <= limite_novodisco <= 100:
+                limites['DISCO'] = limite_novodisco
+            else:
+                print('Limite inválido!')
+                
         else:
             print('Operação cancelada!')
 
     return limites
 
-configuracoes = obter_limites()
-print(configuracoes)
+
+while True:
+    configuracoes = obter_limites()
+    print(configuracoes)
+
+    continuar = input('Deseja continuar? S/N: ').upper()
+
+    if continuar == 'N':
+        print('Encerrando configurações...')
+        break
