@@ -1,10 +1,15 @@
 import psutil
 import time
+from datetime import datetime
 
 def dados_rede():
 
     while True:
 
+        agora = datetime.now()
+        data = agora.strftime("%d/%m/%Y")
+        horario = agora.strftime("%H:%M:%S")
+        
         rede = psutil.net_io_counters()
 
         rede_bytesrecebidos = rede.bytes_recv / (1024 ** 3)
@@ -24,6 +29,9 @@ def dados_rede():
                  PY SYSTEM MONITOR
                    ANÁLISE REDE
 ==================================================
+
+DATA: {data}
+HORA: {horario}
 
 [ TRÁFEGO ACUMULADO ]
 

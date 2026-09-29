@@ -2,11 +2,14 @@
 
 import psutil
 import time
-
+from datetime import datetime
 
 def dados_ram():
 
     while True:
+        agora = datetime.now()
+        data = agora.strftime("%d/%m/%Y")
+        horario = agora.strftime("%H:%M:%S")
 
         ram = psutil.virtual_memory()
 
@@ -20,6 +23,9 @@ def dados_ram():
                  PY SYSTEM MONITOR
                    ANÁLISE RAM
 ==================================================
+
+DATA: {data}
+HORA: {horario}
 
 [ MEMÓRIA RAM ]
 

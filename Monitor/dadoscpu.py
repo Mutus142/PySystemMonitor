@@ -1,4 +1,4 @@
-
+from datetime import datetime
 import psutil
 import time
 
@@ -6,6 +6,9 @@ import time
 def dados_cpu():
 
     while True:
+        agora = datetime.now()
+        data = agora.strftime("%d/%m/%Y")
+        horario = agora.strftime("%H:%M:%S")
 
         cpu_porcent = psutil.cpu_percent(interval=5)
         cpu_nucleos = psutil.cpu_count(logical=False)
@@ -18,6 +21,10 @@ def dados_cpu():
                  PY SYSTEM MONITOR
                    ANÁLISE CPU
 ==================================================
+
+
+DIA: {data}
+HORA: {horario}
 
 [ PROCESSADOR ]
 

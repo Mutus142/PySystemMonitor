@@ -1,10 +1,14 @@
 import psutil
 import time
-
+from datetime import datetime
 
 def dados_disco():
 
     while True:
+
+        agora = datetime.now()
+        data = agora.strftime("%d/%m/%Y")
+        horario = agora.strftime("%H:%M:%S")
 
         disco = psutil.disk_usage("C:\\")
 
@@ -18,6 +22,9 @@ def dados_disco():
                  PY SYSTEM MONITOR
                   ANÁLISE DISCO
 ==================================================
+
+DATA: {data}
+HORA: {horario}
 
 [ DISCO C: ]
 
