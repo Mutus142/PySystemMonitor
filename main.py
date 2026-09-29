@@ -8,33 +8,65 @@ from Monitor.dadosrede import dados_rede
 from Monitor.analise import analise
 
 
+def sobre():
+    print('''
+╔══════════════════════════════════════════════════╗
+║              SOBRE O PYSYSTEMMONITOR             ║
+╠══════════════════════════════════════════════════╣
+║                                                  ║
+║  Projeto:        PySystemMonitor                 ║
+║  Versão:         1.1                             ║
+║  Desenvolvedor:  Mateus                          ║
+║                                                  ║
+║  Bibliotecas utilizadas:                         ║
+║  • psutil                                        ║
+║  • winotify                                      ║
+║  • time                                          ║
+║  • datetime                                      ║
+║                                                  ║
+║  Monitoramento de recursos do sistema através    ║
+║  do terminal, com análise de CPU, RAM, disco     ║
+║  e rede.                                         ║
+║                                                  ║
+╚══════════════════════════════════════════════════╝
+''')
+
+    input('Pressione ENTER para voltar ao menu...')
+
+
 def menu_principal():
 
     while True:
 
         print('''
-==================================================
-                 PY SYSTEM MONITOR
-                     V1.1
-==================================================
-
-                  MENU PRINCIPAL
-
-[1] Análise completa do sistema
-[2] Monitoramento da CPU
-[3] Monitoramento da RAM
-[4] Monitoramento do disco
-[5] Monitoramento da rede
-[0] Sair do programa
-
-==================================================
+╔══════════════════════════════════════════════════╗
+║                 PY SYSTEM MONITOR                ║
+║                      v1.1                        ║
+╠══════════════════════════════════════════════════╣
+║                  MENU PRINCIPAL                  ║
+╠══════════════════════════════════════════════════╣
+║                                                  ║
+║  [1] Análise completa do sistema                 ║
+║  [2] Monitoramento da CPU                        ║
+║  [3] Monitoramento da RAM                        ║
+║  [4] Monitoramento do disco                      ║
+║  [5] Monitoramento da rede                       ║
+║  [6] Sobre                                       ║
+║                                                  ║
+║  [0] Sair do programa                            ║
+║                                                  ║
+╚══════════════════════════════════════════════════╝
 ''')
 
         try:
-            escolha = int(input('Escolha uma opção: '))
+            escolha = int(input('>> Escolha uma opção: '))
 
         except ValueError:
-            print('\n[!] Digite apenas números!\n')
+            print('''
+╔══════════════════════════════════════════════════╗
+║ [!] ERRO: Digite apenas números.                 ║
+╚══════════════════════════════════════════════════╝
+''')
             continue
 
         if escolha == 1:
@@ -52,12 +84,26 @@ def menu_principal():
         elif escolha == 5:
             dados_rede()
 
+        elif escolha == 6:
+            sobre()
+
         elif escolha == 0:
-            print('\nEncerrando PySystemMonitor. Até logo!\n')
+            print('''
+╔══════════════════════════════════════════════════╗
+║                                                  ║
+║           PySystemMonitor encerrado.             ║
+║                   Até logo!                      ║
+║                                                  ║
+╚══════════════════════════════════════════════════╝
+''')
             break
 
         else:
-            print('\n[!] Opção inválida! Tente novamente.\n')
+            print('''
+╔══════════════════════════════════════════════════╗
+║ [!] Opção inválida. Tente novamente.             ║
+╚══════════════════════════════════════════════════╝
+''')
 
 
 if __name__ == "__main__":
