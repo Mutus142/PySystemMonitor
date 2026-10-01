@@ -6,6 +6,7 @@ from Monitor.dadosram import dados_ram
 from Monitor.dadosdisco import dados_disco
 from Monitor.dadosrede import dados_rede
 from Monitor.analise import analise
+from Monitor.processos import process
 
 
 def sobre():
@@ -50,8 +51,9 @@ def menu_principal():
 ║  [2] Monitoramento da CPU                        ║
 ║  [3] Monitoramento da RAM                        ║
 ║  [4] Monitoramento do disco                      ║
-║  [5] Monitoramento da rede                       ║
-║  [6] Sobre                                       ║
+║  [5] Monitoramento da rede
+║  [6] Processos em execução
+║  [7] Sobre                                       ║
 ║                                                  ║
 ║  [0] Sair do programa                            ║
 ║                                                  ║
@@ -84,7 +86,11 @@ def menu_principal():
         elif escolha == 5:
             dados_rede()
 
+
         elif escolha == 6:
+            process()
+
+        elif escolha == 7:
             sobre()
 
         elif escolha == 0:
