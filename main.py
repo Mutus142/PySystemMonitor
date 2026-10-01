@@ -8,6 +8,7 @@ from Monitor.dadosrede import dados_rede
 from Monitor.analise import analise
 from Monitor.processos import process
 from Monitor.sistema import info_sistema
+from Hardware.menu import analisar_hard
 
 
 def sobre():
@@ -17,7 +18,7 @@ def sobre():
 ╠══════════════════════════════════════════════════╣
 ║                                                  ║
 ║  Projeto:        PySystemMonitor                 ║
-║  Versão:         1.1                             ║
+║  Versão:         1.2                             ║
 ║  Desenvolvedor:  Mateus                          ║
 ║                                                  ║
 ║  Bibliotecas utilizadas:                         ║
@@ -43,7 +44,7 @@ def menu_principal():
         print('''
 ╔══════════════════════════════════════════════════╗
 ║                 PY SYSTEM MONITOR                ║
-║                      v1.1                        ║
+║                  v1.2 - 30/09/26                 ║
 ╠══════════════════════════════════════════════════╣
 ║                  MENU PRINCIPAL                  ║
 ╠══════════════════════════════════════════════════╣
@@ -55,7 +56,9 @@ def menu_principal():
 ║  [5] Monitoramento da rede
 ║  [6] Processos em execução
 ║  [7] Informações do Sistema
-   [8] Sobre                                       ║
+   [8] Sobre
+   
+   [9] Menu Análise de Hardware                    ║
 ║                                                  ║
 ║  [0] Sair do programa                            ║
 ║                                                  ║
@@ -97,6 +100,9 @@ def menu_principal():
 
         elif escolha == 8:
             sobre()
+
+        elif escolha == 9:
+            analisar_hard()
 
         elif escolha == 0:
             print('''
