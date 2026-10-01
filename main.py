@@ -1,6 +1,3 @@
-# PY SYSTEM MONITOR V1.1
-# MENU PRINCIPAL
-
 from Monitor.dadoscpu import dados_cpu
 from Monitor.dadosram import dados_ram
 from Monitor.dadosdisco import dados_disco
