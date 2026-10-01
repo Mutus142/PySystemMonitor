@@ -7,6 +7,7 @@ from Monitor.dadosdisco import dados_disco
 from Monitor.dadosrede import dados_rede
 from Monitor.analise import analise
 from Monitor.processos import process
+from Monitor.sistema import info_sistema
 
 
 def sobre():
