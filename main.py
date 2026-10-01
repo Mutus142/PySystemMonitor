@@ -53,7 +53,8 @@ def menu_principal():
 ║  [4] Monitoramento do disco                      ║
 ║  [5] Monitoramento da rede
 ║  [6] Processos em execução
-║  [7] Sobre                                       ║
+║  [7] Informações do Sistema
+   [8] Sobre                                       ║
 ║                                                  ║
 ║  [0] Sair do programa                            ║
 ║                                                  ║
@@ -91,6 +92,9 @@ def menu_principal():
             process()
 
         elif escolha == 7:
+            info_sistema()
+
+        elif escolha == 8:
             sobre()
 
         elif escolha == 0:
