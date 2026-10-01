@@ -1,19 +1,18 @@
-
 <div align="center">
 
 # 🖥️ PySystemMonitor
 
-### Monitoramento de hardware e recursos do sistema com Python
+### Monitoramento de hardware, processos e recursos do sistema com Python
 
 ![Python](https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![Version](https://img.shields.io/badge/Version-1.1-8A2BE2?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.2-8A2BE2?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-22C55E?style=for-the-badge)
 
-**Uma ferramenta CLI para acompanhar CPU, memória RAM, disco e rede diretamente pelo terminal.**
+**Uma ferramenta CLI para monitorar CPU, memória RAM, disco, rede, processos e informações do sistema diretamente pelo terminal.**
 
 [Funcionalidades](#-funcionalidades) •
-[Tecnologias](#-tecnologias-utilizadas) •
+[Tecnologias](#️-tecnologias-utilizadas) •
 [Instalação](#-instalação) •
 [Próximas versões](#-próximas-funcionalidades)
 
@@ -23,9 +22,9 @@
 
 ## 📌 Sobre o projeto
 
-O **PySystemMonitor** é uma aplicação de linha de comando (CLI), desenvolvida em Python, que permite acompanhar os principais recursos de um computador.
+O **PySystemMonitor** é uma aplicação de linha de comando (CLI), desenvolvida em Python, criada para acompanhar diferentes recursos de um computador diretamente pelo terminal.
 
-O sistema oferece análises individuais da CPU, memória RAM, disco e rede, além de uma análise geral que reúne as informações mais importantes em um único painel.
+O sistema permite visualizar informações da CPU, memória RAM, disco e rede, além de realizar uma análise geral, acompanhar processos em execução e consultar informações do sistema operacional.
 
 O projeto foi desenvolvido com o objetivo de aprimorar conhecimentos em **Python, modularização, tratamento de erros, bibliotecas externas e monitoramento de sistemas operacionais**.
 
@@ -40,15 +39,22 @@ O projeto foi desenvolvido com o objetivo de aprimorar conhecimentos em **Python
 | 💿 **Disco** | Capacidade total, espaço utilizado, espaço livre e percentual de ocupação |
 | 🌐 **Rede** | Dados enviados e recebidos, pacotes, erros e descartes |
 | 📊 **Análise geral** | Visão consolidada dos principais indicadores do computador |
+| ⚙️ **Processos** | PID, nome do processo e consumo de memória RAM |
+| 🖥️ **Sistema** | Sistema operacional, versão, arquitetura, processador, nome do computador e uptime |
 
 ### ⚙️ Recursos adicionais
 
 - Menu principal interativo.
 - Análises individuais e análise geral.
-- Possibilidade de atualizar os dados.
+- Monitoramento dos processos em execução.
+- Informações detalhadas do sistema operacional.
+- Exibição do tempo de atividade do computador.
+- Limites configuráveis para utilização de recursos.
+- Alertas de consumo elevado.
+- Possibilidade de atualizar as análises.
 - Tratamento de entradas inválidas com `try/except`.
 - Navegação independente em cada módulo.
-- Exibição organizada e padronizada no terminal.
+- Interface padronizada diretamente no terminal.
 
 ---
 
@@ -59,21 +65,30 @@ O projeto foi desenvolvido com o objetivo de aprimorar conhecimentos em **Python
 | Tecnologia | Utilização |
 |:---:|:---|
 | **Python** | Linguagem principal do projeto |
-| **psutil** | Coleta de informações de hardware e do sistema |
+| **psutil** | Coleta de informações do sistema, hardware e processos |
+| **platform** | Informações sobre sistema operacional e arquitetura |
+| **datetime** | Datas, horários e cálculo do uptime |
 | **time** | Controle dos intervalos entre análises |
+| **winotify** | Exibição de notificações e alertas no Windows |
 | **Git** | Versionamento do código-fonte |
 | **GitHub** | Hospedagem e documentação do projeto |
 | **VS Code** | Ambiente de desenvolvimento |
 
 </div>
 
-### 🐍 Python e psutil
+### 🐍 Python e bibliotecas
 
-O Python é responsável pela lógica da aplicação, pelos menus interativos e pela organização dos módulos.
+O Python é responsável pela lógica da aplicação, menus, tratamento de entradas e organização dos módulos.
 
-A biblioteca `psutil` permite acessar informações como utilização da CPU, consumo de memória, armazenamento e estatísticas de rede.
+A biblioteca `psutil` permite acessar informações sobre CPU, memória RAM, armazenamento, rede e processos em execução.
 
-O módulo nativo `time` controla os intervalos de espera definidos para cada análise.
+O módulo `platform` fornece informações sobre o sistema operacional, arquitetura e processador.
+
+O módulo `datetime` é utilizado para trabalhar com datas, horários e calcular há quanto tempo o computador está ligado.
+
+O módulo `time` controla os intervalos entre determinadas análises.
+
+A biblioteca `winotify` é utilizada para gerar notificações no Windows quando os limites definidos são atingidos.
 
 ---
 
@@ -87,17 +102,25 @@ PySystemMonitor/
 ├── requirements.txt
 ├── .gitignore
 │
-└── Monitor/
-    ├── analise.py
-    ├── dadoscpu.py
-    ├── dadosram.py
-    ├── dadosdisco.py
-    └── dadosrede.py
+├── Monitor/
+│   ├── analise.py
+│   ├── dadoscpu.py
+│   ├── dadosram.py
+│   ├── dadosdisco.py
+│   ├── dadosrede.py
+│   ├── processos.py
+│   └── sistema.py
+│
+└── Utils/
+    ├── alertas.py
+    └── configurações.py
 ```
 
-O arquivo `main.py` controla o menu principal e a navegação.
+O arquivo `main.py` controla o menu principal e a navegação entre os módulos.
 
-Os arquivos da pasta `Monitor/` são responsáveis pela coleta e exibição das informações de cada componente.
+A pasta `Monitor/` concentra as funções responsáveis pela coleta e exibição das informações do computador.
+
+A pasta `Utils/` contém recursos auxiliares, como configurações de limites e sistema de alertas.
 
 ---
 
@@ -106,19 +129,19 @@ Os arquivos da pasta `Monitor/` são responsáveis pela coleta e exibição das 
 Exemplo ilustrativo da análise geral:
 
 ```text
-==================================================
-                 PY SYSTEM MONITOR
-                   ANÁLISE GERAL
-==================================================
+============================================================
+                     PY SYSTEM MONITOR
+                       ANÁLISE GERAL
+============================================================
 
 [ CPU ]
 
 Uso da CPU:             15.4%
 Núcleos físicos:        8
-Threads:                12
-Frequência atual:       2.10 GHz
+Threads:                 12
+Frequência atual:        2.10 GHz
 
---------------------------------------------------
+------------------------------------------------------------
 
 [ MEMÓRIA RAM ]
 
@@ -127,7 +150,7 @@ RAM utilizada:          4.49 GiB
 RAM disponível:         3.22 GiB
 RAM total:              7.71 GiB
 
---------------------------------------------------
+------------------------------------------------------------
 
 [ DISCO C: ]
 
@@ -136,7 +159,7 @@ Espaço utilizado:       305.24 GiB
 Espaço livre:           170.18 GiB
 Espaço total:           475.42 GiB
 
---------------------------------------------------
+------------------------------------------------------------
 
 [ REDE ]
 
@@ -145,27 +168,62 @@ Dados enviados:         0.24 GiB
 Pacotes recebidos:      1225410
 Pacotes enviados:       449009
 
-==================================================
+============================================================
 ```
 
 ### 📋 Menu principal
 
 ```text
-==================================================
-                 PY SYSTEM MONITOR
-                     V1.1
-==================================================
+============================================================
+                     PY SYSTEM MONITOR
+                           V1.2
+============================================================
 
-                  MENU PRINCIPAL
+                       MENU PRINCIPAL
 
 [1] Análise completa do sistema
 [2] Monitoramento da CPU
 [3] Monitoramento da RAM
 [4] Monitoramento do disco
 [5] Monitoramento da rede
+[6] Processos em execução
+[7] Informações do sistema
 [0] Sair do programa
 
-==================================================
+============================================================
+```
+
+### ⚙️ Monitoramento de processos
+
+```text
+══════════════════════════════════════════════════════════════════════
+                       PROCESSOS EM EXECUÇÃO
+══════════════════════════════════════════════════════════════════════
+PID        │ PROCESSO                            │             RAM
+──────────────────────────────────────────────────────────────────────
+19076      │ Code.exe                            │       21.60 MB
+12840      │ chrome.exe                          │      315.42 MB
+8452       │ python.exe                          │       18.73 MB
+══════════════════════════════════════════════════════════════════════
+```
+
+### 🖥️ Informações do sistema
+
+```text
+═════════════════════════════════════════════════════════════════
+                   INFORMAÇÕES DO SISTEMA
+═════════════════════════════════════════════════════════════════
+
+ Sistema Operacional : Windows
+ Versão              : 11
+ Arquitetura         : AMD64
+ Processador         : Intel64 Family...
+ Nome do Computador  : DESKTOP-XXXXX
+
+ Inicializado em     : 30/09/2026 - 13:26:31
+ Tempo Ligado        : 0d 8h 19min
+
+═════════════════════════════════════════════════════════════════
 ```
 
 ---
@@ -203,11 +261,24 @@ python main.py
 O menu principal será exibido no terminal.
 
 > [!NOTE]
-> A versão atual foi desenvolvida para Windows. O módulo de disco utiliza a unidade `C:\`, que pode precisar ser alterada em outros sistemas operacionais.
+> A versão atual foi desenvolvida para Windows. Algumas funcionalidades, como notificações e monitoramento da unidade `C:\`, são específicas desse sistema operacional.
 
 ---
 
 ## 📝 Histórico de versões
+
+### 🟣 V1.2 — Processos, sistema e monitoramento
+
+- Implementação do monitoramento de processos.
+- Exibição de PID, nome e consumo de RAM dos processos.
+- Novo módulo de informações do sistema.
+- Identificação do sistema operacional, versão e arquitetura.
+- Exibição de informações do processador e nome do computador.
+- Exibição da data e hora de inicialização.
+- Cálculo do tempo de atividade do sistema.
+- Implementação de limites configuráveis.
+- Sistema de alertas para consumo elevado.
+- Novas melhorias visuais e de navegação.
 
 ### 🟢 V1.1 — Correções e padronização
 
@@ -215,7 +286,7 @@ O menu principal será exibido no terminal.
 - Formatação da frequência e dos tempos da CPU.
 - Tratamento de entradas inválidas.
 - Separação dos loops de análise e navegação.
-- Padronização visual de todos os módulos.
+- Padronização visual dos módulos.
 - Organização dos arquivos e documentação.
 
 ### 🔵 V1.0 — Versão inicial
@@ -229,15 +300,17 @@ O menu principal será exibido no terminal.
 
 ## 🔮 Próximas funcionalidades
 
-Funcionalidades planejadas para futuras versões:
+Ideias planejadas para futuras versões:
 
-- [ ] Monitoramento contínuo em tempo real.
-- [ ] Velocidades de download e upload.
-- [ ] Alertas de consumo elevado de CPU, RAM e disco.
-- [ ] Interface aprimorada com a biblioteca Rich.
+- [ ] Histórico das análises.
+- [ ] Armazenamento dos dados em JSON ou CSV.
+- [ ] Persistência das configurações de limites.
+- [ ] Histórico de alertas.
 - [ ] Exportação de relatórios.
-- [ ] Monitoramento de processos.
-- [ ] Informações adicionais das interfaces de rede.
+- [ ] Busca e filtragem de processos.
+- [ ] Ranking de processos por consumo de CPU e RAM.
+- [ ] Velocidades de download e upload.
+- [ ] Interface aprimorada para o terminal.
 
 ---
 
