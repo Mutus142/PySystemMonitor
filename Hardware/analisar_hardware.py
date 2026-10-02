@@ -1,6 +1,6 @@
 import psutil
 import subprocess
-
+import json
 
 def analisar_hardware():
 
@@ -23,16 +23,30 @@ def analisar_hardware():
 
         nucleos = psutil.cpu_count(logical=False)
         threads = psutil.cpu_count(logical=True)
-        frequencia = psutil.cpu_freq()
 
         dados_cpu = {
             "nome": nome,
             "nucleos": nucleos,
             "threads": threads,
-            "frequencia_max": frequencia.max
         }
 
         return dados_cpu
 
     cpu = obter_cpu()
-    print(cpu)
+
+    def dados_ram():
+
+        def dados_ram():
+
+    comando = [
+    "powershell.exe",
+    "-NoProfile",
+    "-Command",
+    "Get-CimInstance Win32_PhysicalMemory | Select-Object Manufacturer, Capacity, Speed, ConfiguredClockSpeed, SMBIOSMemoryType, PartNumber | ConvertTo-Json"
+    ]
+
+    resultado = subprocess.run(
+    comando,
+    capture_output=True,
+    text=True
+    )
