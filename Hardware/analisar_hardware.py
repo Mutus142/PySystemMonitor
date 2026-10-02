@@ -187,3 +187,13 @@ def analisar_hardware():
 
     print("\nPLACA-MÃE:")
     print(placa_mae)
+
+    hardware = {
+    "cpu": cpu,
+    "ram": ram,
+    "gpu": gpu,
+    "armazenamento": ssd,
+    "placa_mae": placa_mae
+    }
+
+    return hardware

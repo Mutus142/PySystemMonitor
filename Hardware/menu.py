@@ -1,6 +1,9 @@
 from Hardware.analisar_hardware import analisar_hardware
 from Hardware.analisar_melhorias import sug_melhorias
 
+hardware = analisar_hardware
+sug_melhorias(hardware)
+
 def analisar_hard():
 
     while True:
